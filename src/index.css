@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  /* Dark mode (default) */
+  .dark body {
+    @apply bg-[#0a0a0c] text-gray-200;
+  }
+
+  /* Light mode — Engineering Blueprint */
+  .light body {
+    background-color: #F4F0E8;
+    color: #1A2744;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+  }
+
+  .light .text-glow {
+    text-shadow: none;
+  }
+
+  .box-glow {
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+  }
+
+  .light .box-glow {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+}
+
+/* ===== DARK MODE BACKGROUNDS ===== */
+.dark .noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.15;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.dark .grid-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -2;
+  background-size: 50px 50px;
+  background-image:
+    linear-gradient(to right, rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(50px);
+  }
+}
+
+.dark #particles-js {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: -3;
+  pointer-events: none;
+}
+
+/* ===== LIGHT MODE — ENGINEERING BLUEPRINT ===== */
+.light .noise-overlay,
+.light .grid-background,
+.light #particles-js {
+  display: none;
+}
+
+/* Blueprint grid background */
+.light body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(216, 228, 238, 0.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(216, 228, 238, 0.25) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Blueprint heading fonts in light mode */
+.light h1,
+.light h2,
+.light h3 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  letter-spacing: -0.02em;
+}
+
+/* Blueprint code/mono font in light mode */
+.light .font-mono {
+  font-family: 'IBM Plex Mono', 'Fira Code', monospace;
+}
+
+/* Light mode color overrides for primary/secondary */
+.light {
+  --bg-primary: #F4F0E8;
+  --bg-secondary: #EAE6DC;
+  --bg-card: #FFFFFF;
+  --text-primary: #1A2744;
+  --text-secondary: #3D4F6B;
+  --text-muted: #7A8FA6;
+  --accent-primary: #0A4F6B;
+  --accent-cyan: #1A6B8A;
+  --accent-amber: #8B5E00;
+  --border-color: #C8D8E8;
+  --grid-color: #D8E4EE40;
+}
+
+/* ===== GLOBAL SECTION BORDERS ===== */
+.dark .section-divider {
+  @apply border-primary/20;
+}
+
+.light .section-divider {
+  border-color: #C8D8E8;
+}
+
+/* ===== GLASS CARD ===== */
+.glass-card {
+  @apply rounded-lg transition-all duration-300;
+}
+
+.dark .glass-card {
+  @apply bg-[#0f0f13] border border-gray-800;
+}
+
+.light .glass-card {
+  background-color: #FFFFFF;
+  border: 1px solid #C8D8E8;
+  box-shadow: 0 2px 8px rgba(26, 39, 68, 0.06);
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+}
+
+.dark .glass-card:hover {
+  border-color: rgba(0, 240, 255, 0.4);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.05);
+}
+
+.light .glass-card:hover {
+  border-color: #0A4F6B;
+  box-shadow: 0 4px 16px rgba(10, 79, 107, 0.1);
+}
+
+/* ===== SELECTION ===== */
+.dark ::selection {
+  @apply bg-primary/30 text-primary;
+}
+
+.light ::selection {
+  background: rgba(10, 79, 107, 0.15);
+  color: #0A4F6B;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #0a0a0c;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #1a1a2e;
+  border-radius: 3px;
+}
+
+.light ::-webkit-scrollbar-track {
+  background: #EAE6DC;
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: #C8D8E8;
+  border-radius: 3px;
+}
+
+/* ===== CUSTOM CURSOR — DARK MODE ONLY ===== */
+.dark * {
+  cursor: none;
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: #00E5FF;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.05s ease;
+}
+
+.cursor-ring {
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid #00E5FF66;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.12s ease, width 0.2s, height 0.2s;
+}
+
+a:hover~.cursor-ring,
+button:hover~.cursor-ring {
+  width: 44px;
+  height: 44px;
+}
