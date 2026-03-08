@@ -1,6 +1,6 @@
 # Portfolio V2 - Dhruv Gupta
 
-**🟢 Live Deployment:** [https://dhruv-portfolio-dusky.vercel.app](https://dhruv-portfolio-dusky.vercel.app/)
+**🟢 Live Deployment:** [https://dhruv-portfolio.vercel.app](https://dhruv-portfolio-gl3u.vercel.app/)
 
 A high-performance, cybersecurity-themed portfolio website built with React, Vite, and Tailwind CSS. Designed to showcase work in Machine Learning, Security Engineering, and Systems Architecture.
 
